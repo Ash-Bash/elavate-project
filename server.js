@@ -113,7 +113,7 @@ app.get("/api/staffpickslist", function(req, res) {
     });
 });
 
-// Gets a StaffPicksList Item From The Database.
+// Gets a StaffPicksList Item From The Database
 app.get('/api/staffpickslist/:id', function(req, res){
     var id = req.params.id;
     console.log("Pick ID: " + id);
