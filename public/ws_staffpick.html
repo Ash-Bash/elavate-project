@@ -1,0 +1,95 @@
+<!DOCTYPE>
+<html ng-app="StaffPick">
+    <head>
+        <!--BOOTSTRAP-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" type="text/css" href="frameworks/bootstrap/dist/css/bootstrap.min.css"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" type="text/css" href="frameworks/bootstrap/dist/css/bootstrap-theme.min.css"/>
+        <!--END-BOOTSTRAP-BLOCK-->
+        
+        <title>Welcome To Elavate</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Elavate</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="webapp.html">Web App</a></li>
+                        <li class="active"><a href="webservice.html">Web Service</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <div class="container" ng-controller="StaffPickController">
+            <!--TITLE-->
+            <h1>Staff Picks List</h1>
+            <!--TABLE-->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Station ID</th>
+                        <th>Actions</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <!--Inputs So The User Can add a Record To The Staff Picks List-->
+                    <tr>
+                        <td>{{pick._id}}</td>
+                        <td><input class="form-control" ng-model="pick.name"></td>
+                        <td>
+                            <select class="form-control" id="sel1" ng-model="pick.stationdata" ng-change="">
+                                <option disabled value="">Select Station</option>
+                                <option ng-repeat="station in stationlist" value="{ id: '{{station._id}}', name: '{{station.name}}' }">{{station.name}} - {{station._id}}</option>
+                            </select>
+                        </td>
+                        <td><button class="btn btn-success" ng-click="addPick()">Add</button></td>
+                        <td><button class="btn btn-info" ng-click="updatePick()">Update</button></td>
+                    </tr>
+                    <!--Displays The Staff Picks List Data In A Table-->
+                    <tr ng-repeat="pick in staffpicklist">
+                        <td>{{pick._id}}</td>
+                        <td>{{pick.name}}</td>
+                        <td>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Station ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{pick.stationid}}</td>
+                                        <td>{{pick.stationname}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td><button class="btn btn-warning" ng-click="editPick(pick._id)">Edit</button></td>
+                        <td><button class="btn btn-danger" ng-click="deletePick(pick._id)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script src="frameworks/angular/angular.min.js"></script>
+        <script src="controllers/WS_StaffPickController.js"></script>
+    </body>    
+</html>
