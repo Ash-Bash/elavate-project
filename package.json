@@ -4,7 +4,7 @@
   "description": "A Web Service that provides a list of radio station to the user",
   "main": "server.js",
   "scripts": {
-    "start": "supervisor server.js"
+    "start": "node server.js"
   },
   "author": "b00240396",
   "license": "ISC",
