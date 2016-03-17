@@ -233,5 +233,5 @@ app.delete('/api/staffpickslist/:id', function(req, res){
 ////////////////////////////////////////////////////////
 
 // Starts Server
-app.listen(2000);
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 2000);
 console.log('Elavate API and Web App is Running on port 2000');
