@@ -39,12 +39,15 @@ StaffPick.controller('StaffPickController', ['$scope', '$http', function($scope,
     $scope.addPick = function() {
         console.log($scope.pick);
 		
-		var stationdata = JSON.parse($scope.pick.stationdata);
-
-		var pickItem;
-		pickItem.name = $scope.pick.name;
-		pickItem.stationid = stationdata.id;
-		pickItem.stationname = stationdata.name;
+		var stationdata = JSON.parse(JSON.stringify(eval("(" + $scope.pick.stationdata + ")")));
+        console.log(stationdata);
+		var pickItem =  {
+            name: $scope.pick.name,
+            stationid: stationdata.id,
+            stationname: stationdata.sname
+        };
+		//pickItem.stationid = stationdata.id;
+		//pickItem.stationname = stationdata.sname;
 
 		console.log(pickItem);
 
@@ -57,7 +60,16 @@ StaffPick.controller('StaffPickController', ['$scope', '$http', function($scope,
     // Updates A Pick To The Database
     $scope.updatePick = function() {
         console.log($scope.pick._id);
-        $http.put('/api/staffpickslist/' + $scope.pick._id, $scope.pick).success(function(response) {
+		
+		var stationdata = JSON.parse(JSON.stringify(eval("(" + $scope.pick.stationdata + ")")));
+        console.log(stationdata);
+		var pickItem =  {
+            name: $scope.pickname,
+            stationid: stationdata.id,
+            stationname: stationdata.sname
+        };
+        
+        $http.put('/api/staffpickslist/' + $scope.pick._id, pickItem).success(function(response) {
             console.log(response);
             // Refresh WebPage
             refresh();
@@ -68,6 +80,7 @@ StaffPick.controller('StaffPickController', ['$scope', '$http', function($scope,
         console.log(id);
         $http.get('/api/staffpickslist/' + id).success(function(response){
             $scope.pick = response;
+            $scope.pick.stationdata = '{ "id": "' + response.stationid + '", "sname": "' + response.stationname + '" }';
         });
     }
     // Deletes A Pick From The StaffPicks Database

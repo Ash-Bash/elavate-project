@@ -57,7 +57,7 @@
                         <td>
                             <select class="form-control" id="sel1" ng-model="pick.stationdata" ng-change="">
                                 <option disabled value="">Select Station</option>
-                                <option ng-repeat="station in stationlist" value="{ id: '{{station._id}}', name: '{{station.name}}' }">{{station.name}} - {{station._id}}</option>
+                                <option ng-repeat="station in stationlist" value='{ "id": "{{station._id}}", "sname": "{{station.name}}" }'>{{station.name}} - {{station._id}}</option>
                             </select>
                         </td>
                         <td><button class="btn btn-success" ng-click="addPick()">Add</button></td>

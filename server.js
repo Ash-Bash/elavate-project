@@ -3,11 +3,15 @@
 ////////////////////////////////////////////////////////
 
 // Dependencies
+var http = require('http');
 var express = require('express');
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
 var bodyParser = require('body-parser');
 var schema = mongoose.Schema;
+
+// Connection Infomation
+var port = 2000;
 
 // MongoDB
 mongoose.connect('mongodb://b00240396:admin@ds011389.mlab.com:11389/elavate_db');
@@ -233,10 +237,5 @@ app.delete('/api/staffpickslist/:id', function(req, res){
 ////////////////////////////////////////////////////////
 
 // Starts Server
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
-
-app.listen(server_port, server_ip_address, function(){
-  console.log("Listening on " + server_ip_address + ", server_port " + server_port)
-});
+app.listen(port);
 console.log('Elavate API and Web App is Running on port 2000');
