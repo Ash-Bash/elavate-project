@@ -72,11 +72,12 @@ body {
  */
 
 .main {
-  padding: 20px;
+  padding: 0px;
+  margin-left: 14.6%;
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
+    padding-right: 0px;
     padding-left: 40px;
   }
 }
@@ -103,3 +104,43 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+#playerview {
+    display: table-row;
+    position: fixed;
+    width: 86.4%;
+    height: 64px;
+    border-width: 0px;
+    background-color: #eee;
+}
+
+#contentview {
+    display: block;
+    width: 100%;
+    height: 88.9%;
+    border-width: 1px;
+    
+}
+
+#bodyplayerview {
+    background-color: silver;
+}
+
+#titleheader {
+    margin-left: 24px;
+    padding-left: 24px;
+}
+
+#playerlist {
+    height: 64px;
+}
+
+#playertitleslist {
+    width: 60%;
+    height: 64px;
+}
+
+#playertitle {
+    display: table-row;
+}
+
