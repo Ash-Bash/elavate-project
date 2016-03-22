@@ -10,8 +10,18 @@
         <!--END-BOOTSTRAP-BLOCK-->
         
         <title>Welcome To Elavate</title>
+        <script>
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            
+            function randomWallpaper() {
+                var imgarray = ["img/wallpapers/space1.jpg", "img/wallpapers/space2.jpg", "img/wallpapers/space3.jpg", "img/wallpapers/space4.jpg", "img/wallpapers/space5.jpg", "img/wallpapers/space6.jpg"];
+                document.body.style.background =  'url(' + imgarray[getRandomInt(0,5)] + ') no-repeat center center';
+            }
+        </script>
     </head>
-    <body>
+    <body onload="randomWallpaper()">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
