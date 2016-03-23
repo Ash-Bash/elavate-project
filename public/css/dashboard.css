@@ -108,8 +108,9 @@ body {
 #playerview {
     display: table-row;
     position: fixed;
+    right: 0;
     bottom: 0;
-    width: 100%;
+    width: 83%;
     height: 64px;
     border-width: 0px;
     border-top-width: 1px;
@@ -119,7 +120,8 @@ body {
 #contentview {
     display: block;
     position: fixed;
-    width: 100%;
+    right: 0;
+    width: 83%;
     height: 88.8%;
     border-width: 0px;
     
@@ -146,4 +148,5 @@ body {
 #playertitle {
     display: table-row;
 }
+
 
