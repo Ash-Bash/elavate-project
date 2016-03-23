@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html ng-app>
+<html ng-app="WebApp">
     <head>
         <!--BOOTSTRAP-->
         <!-- Latest compiled and minified CSS -->
@@ -35,20 +35,20 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid" ng-controller="WebAppController">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"> Stations</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-time" aria-hidden="true"> History</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"> Favorites</span></a></li>
+                        <li class="active"><a href="#" onclick=""><span class="glyphicon glyphicon-home" aria-hidden="true"> Home</span></a></li>
+                        <li class=""><a href="#" onclick=""><span class="glyphicon glyphicon-th" aria-hidden="true"> Stations</span></a></li>
+                        <li class=""><a href="#" onclick=""><span class="glyphicon glyphicon-time" aria-hidden="true"> History</span></a></li>
+                        <li class=""><a href="#" onclick=""><span class="glyphicon glyphicon-star-empty" aria-hidden="true"> Favorites</span></a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main">
-                    <iframe id="contentview" src="iframes/home.html">
+                    <iframe id="contentview" ng-src="{{contentview_url}}">
                     </iframe>
-                    <iframe id="playerview" src="iframes/player.html">
+                    <iframe id="playerview" src="{{playerview_url}}">
                     </iframe>                    
                 </div>
             </div>
@@ -60,5 +60,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="frameworks/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <!--Web App Controller-->
+        <script src="controllers/WebAppController.js"></script>
+        
     </body>    
 </html>
