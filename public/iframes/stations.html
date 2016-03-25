@@ -12,7 +12,32 @@
             <!--END-BOOTSTRAP-BLOCK-->
     </head>    
     <body>
-        <h1 id="titleheader">Under Construction</h1>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">Stations</a>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div ng-controller="StationsViewController">
+            <table class="table">
+                <tbody>
+                    <!--Displays The Stations List Data In A Table-->
+                    <tr ng-repeat="station in stationlist">
+                        <td style="vertical-align: middle;"><img src="{{pick.icon}}" width="64" height="64"/></td>
+                        <td style="vertical-align: middle;">{{station.name}}</td>
+                        <td style="vertical-align: middle;">{{station.broadcaster}}</td>
+                        <td style="vertical-align: middle;">{{station.region}}</td>
+                        <td style="vertical-align: middle;"><a href="{{station.websiteUrl}}">{{station.websiteUrl}}</a></td>
+                        <td style="vertical-align: middle;"><button class="btn btn-success" ng-click="">Play</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <script src="frameworks/angular/angular.min.js"></script>
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -20,5 +45,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="frameworks/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <!--View Controller-->
+        <script src="controllers/StationsViewController.js"></script>
     </body>    
 </html>

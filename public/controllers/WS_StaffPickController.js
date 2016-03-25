@@ -43,6 +43,7 @@ StaffPick.controller('StaffPickController', ['$scope', '$http', function($scope,
         console.log(stationdata);
 		var pickItem =  {
             name: $scope.pick.name,
+            icon: $scope.pick.icon,
             stationid: stationdata.id,
             stationname: stationdata.sname
         };
@@ -64,7 +65,8 @@ StaffPick.controller('StaffPickController', ['$scope', '$http', function($scope,
 		var stationdata = JSON.parse(JSON.stringify(eval("(" + $scope.pick.stationdata + ")")));
         console.log(stationdata);
 		var pickItem =  {
-            name: $scope.pickname,
+            name: $scope.pick.name,
+            icon: $scope.pick.icon,
             stationid: stationdata.id,
             stationname: stationdata.sname
         };

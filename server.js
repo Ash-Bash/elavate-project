@@ -39,6 +39,7 @@ app.use(express.static(__dirname + "/public"));
 // Stations Schema
 var StationsSchema = schema ({
     name: String,
+    icon: String,
     broadcaster: String,
     region: String,
     websiteUrl: String,
@@ -51,6 +52,7 @@ Stations.register(app, '/api/data/stationslist');
 // Staff Picks Schema
 var StaffPickSchema = schema ({
     name: String,
+    icon: String,
     stationid: String,
 	stationname: String
 });
@@ -61,6 +63,7 @@ StaffPicks.register(app, '/api/data/staffpickslist');
 // Favorites Schema (Web App)
 var FavoriteSchema = schema ({
     name: String,
+    icon: String,
     broadcaster: String,
     region: String,
     websiteUrl: String,
@@ -73,6 +76,7 @@ Favorites.register(app, '/api/data/favorites');
 // History Schema (Web App)
 var HistorySchema = schema ({
     name: String,
+    icon: String,
     broadcaster: String,
     region: String,
     websiteUrl: String,
@@ -137,6 +141,7 @@ app.put('/api/stationslist/:id', function(req, res){
     
     // Allocates The Station Record data.
     stations.name = req.body.name;
+    stations.icon = req.body.icon;
     stations.broadcaster = req.body.broadcaster;
     stations.region = req.body.region;
     stations.websiteUrl = req.body.websiteUrl;
@@ -162,6 +167,7 @@ app.put('/api/staffpickslist/:id', function(req, res){
     
     // Allocates The Station Record data.
     staffpicks.name = req.body.name;
+    staffpicks.icon = req.body.icon;
     staffpicks.stationid = req.body.stationid;
 	staffpicks.stationname = req.body.stationname;
     
@@ -185,6 +191,7 @@ app.post('/api/stationslist', function(req, res){
     
     // Allocates The Station Record data.
     stations.name = req.body.name;
+    stations.icon = req.body.icon;
     stations.broadcaster = req.body.broadcaster;
     stations.region = req.body.region;
     stations.websiteUrl = req.body.websiteUrl;
@@ -203,6 +210,7 @@ app.post('/api/staffpickslist', function(req, res){
     
     // Allocates The Station Record data.
     staffpicks.name = req.body.name;
+    staffpicks.icon = req.body.icon;
     staffpicks.stationid = req.body.stationid;
 	staffpicks.stationname = req.body.stationname;
     
