@@ -91,6 +91,9 @@ History.register(app, '/api/data/history');
 ////////////////////////////////////////////////////////
 
 // Get API's
+
+//------------------------Stations--------------------//
+
 // Gets The Whole StationsList Database
 app.get("/api/stationslist", function(req, res) {
     console.log("I Received a GET Request");
@@ -110,6 +113,8 @@ app.get('/api/stationslist/:id', function(req, res){
         res.json(station);
     });
 });
+
+//----------------------Staff-Picks------------------//
 
 // Gets The Whole StaffPicksList Database
 app.get("/api/staffpickslist", function(req, res) {
@@ -131,7 +136,54 @@ app.get('/api/staffpickslist/:id', function(req, res){
     });
 });
 
+//------------------------History--------------------//
+
+// Gets The Whole HistoryList Database
+app.get("/api/historylist", function(req, res) {
+    console.log("I Received a GET Request");
+    
+    History.find(function(err, pick) {
+        console.log(pick);
+        res.json(pick);
+    });
+});
+
+// Gets a HistoryList Item From The Database
+app.get('/api/historylist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("Pick ID: " + id);
+    
+    History.findOne({ _id: id}, function(err, pick){
+        res.json(pick);
+    });
+});
+
+//-----------------------Favorites-------------------//
+
+// Gets The Whole FavoritesList Database
+app.get("/api/favoriteslist", function(req, res) {
+    console.log("I Received a GET Request");
+    
+    Favorites.find(function(err, pick) {
+        console.log(pick);
+        res.json(pick);
+    });
+});
+
+// Gets a FavoritesList Item From The Database
+app.get('/api/favoriteslist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("Pick ID: " + id);
+    
+    Favorites.findOne({ _id: id}, function(err, pick){
+        res.json(pick);
+    });
+});
+
 // Put API's
+
+//------------------------Stations--------------------//
+
 // Updates a StationList Item To The Database
 app.put('/api/stationslist/:id', function(req, res){
     var id = req.params.id;
@@ -158,6 +210,8 @@ app.put('/api/stationslist/:id', function(req, res){
     });
 });
 
+//----------------------Staff-Picks------------------//
+
 // Updates a StaffPicksList Item To The Database
 app.put('/api/staffpickslist/:id', function(req, res){
     var id = req.params.id;
@@ -165,7 +219,7 @@ app.put('/api/staffpickslist/:id', function(req, res){
     
     var staffpicks = new StaffPicks();
     
-    // Allocates The Station Record data.
+    // Allocates The Staffpicks Record data.
     staffpicks.name = req.body.name;
     staffpicks.icon = req.body.icon;
     staffpicks.stationid = req.body.stationid;
@@ -182,7 +236,66 @@ app.put('/api/staffpickslist/:id', function(req, res){
     });
 });
 
+//------------------------History--------------------//
+
+// Updates a HistoryList Item To The Database
+app.put('/api/historylist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("History ID: " + id);
+    
+    var history = new History();
+    
+    // Allocates The History Record data.
+    history.name = req.body.name;
+    history.icon = req.body.icon;
+    history.broadcaster = req.body.broadcaster;
+    history.region = req.body.region;
+    history.websiteUrl = req.body.websiteUrl;
+    history.streamUrl = req.body.streamUrl;
+    
+    var upsertedData = history.toObject();
+    
+    delete upsertedData._id;
+    
+    History.update({ _id: id }, {$set: upsertedData }, {upsert: true}, function(err, historyitem) {
+        // we have the updated user returned to us
+        console.log(historyitem);
+        res.json(historyitem);
+    });
+});
+
+//-----------------------Favorites-------------------//
+
+// Updates a FavoritesList Item To The Database
+app.put('/api/favoriteslist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("Favorites ID: " + id);
+    
+    var favorites = new Favorites();
+    
+    // Allocates The Favorites Record data.
+    favorites.name = req.body.name;
+    favorites.icon = req.body.icon;
+    favorites.broadcaster = req.body.broadcaster;
+    favorites.region = req.body.region;
+    favorites.websiteUrl = req.body.websiteUrl;
+    favorites.streamUrl = req.body.streamUrl;
+    
+    var upsertedData = favorites.toObject();
+    
+    delete upsertedData._id;
+    
+    Favorites.update({ _id: id }, {$set: upsertedData }, {upsert: true}, function(err, favorite) {
+        // we have the updated user returned to us
+        console.log(favorite);
+        res.json(favorite);
+    });
+});
+
 // Post API's
+
+//------------------------Stations--------------------//
+
 // Posts a StationsList Item
 app.post('/api/stationslist', function(req, res){
     console.log(req.body);
@@ -202,6 +315,8 @@ app.post('/api/stationslist', function(req, res){
     });
 });
 
+//----------------------Staff-Picks------------------//
+
 // Posts a StaffPicksList Item
 app.post('/api/staffpickslist', function(req, res){
     console.log(req.body);
@@ -219,7 +334,52 @@ app.post('/api/staffpickslist', function(req, res){
     });
 });
 
+//------------------------History--------------------//
+
+// Posts a HistoryList Item
+app.post('/api/historylist', function(req, res){
+    console.log(req.body);
+    
+    var history = new History();
+    
+    // Allocates The History Record data.
+    history.name = req.body.name;
+    history.icon = req.body.icon;
+    history.broadcaster = req.body.broadcaster;
+    history.region = req.body.region;
+    history.websiteUrl = req.body.websiteUrl;
+    history.streamUrl = req.body.streamUrl;
+    
+    history.save(function(err, historyitem){
+        res.json(historyitem);
+    });
+});
+
+//-----------------------Favorites-------------------//
+
+// Posts a FavoritesList Item
+app.post('/api/favoriteslist', function(req, res){
+    console.log(req.body);
+    
+    var favorites = new Favorites();
+    
+    // Allocates The Favorites Record data.
+    favorites.name = req.body.name;
+    favorites.icon = req.body.icon;
+    favorites.broadcaster = req.body.broadcaster;
+    favorites.region = req.body.region;
+    favorites.websiteUrl = req.body.websiteUrl;
+    favorites.streamUrl = req.body.streamUrl;
+    
+    history.save(function(err, historyitem){
+        res.json(historyitem);
+    });
+});
+
 // Delete API's
+
+//------------------------Stations--------------------//
+
 // Deletes a StationsList Item
 app.delete('/api/stationslist/:id', function(req, res){
     var id = req.params.id;
@@ -230,6 +390,8 @@ app.delete('/api/stationslist/:id', function(req, res){
     });
 });
 
+//----------------------Staff-Picks------------------//
+
 // Deletes a StaffPicksList Item
 app.delete('/api/staffpickslist/:id', function(req, res){
     var id = req.params.id;
@@ -237,6 +399,30 @@ app.delete('/api/staffpickslist/:id', function(req, res){
     
     StaffPicks.remove({ _id: id }, function(err, pick){
         res.json(pick);
+    });
+});
+
+//------------------------History--------------------//
+
+// Deletes a HistoryList Item
+app.delete('/api/historylist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("History ID: " + id);
+    
+    History.remove({ _id: id }, function(err, history){
+        res.json(history);
+    });
+});
+
+//-----------------------Favorites-------------------//
+
+// Deletes a FavoritesList Item
+app.delete('/api/favoriteslist/:id', function(req, res){
+    var id = req.params.id;
+    console.log("Favorites ID: " + id);
+    
+    Favorites.remove({ _id: id }, function(err, favorite){
+        res.json(favorite);
     });
 });
 

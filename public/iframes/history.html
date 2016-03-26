@@ -12,15 +12,31 @@
             <!--END-BOOTSTRAP-BLOCK-->
     </head>    
     <body>
-        <div>
-            <h1 id="titleheader">Under Construction</h1>
-            <div class="row">
-                <div class="col-xs-6 col-md-3">
-                    <a href="#" class="thumbnail">
-                        <img src="https://pbs.twimg.com/profile_images/378800000515658307/5abf4c1c68024e5d46c3c6e672a13e4b.jpeg" alt="">
-                    </a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <a class="navbar-brand" href="#">History</a>
                 </div>
             </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div ng-controller="HistoryViewController">
+            <table class="table">
+                <tbody>
+                    <!--Displays The Stations List Data In A Table-->
+                    <tr ng-repeat="history in historylist">
+                        <td style="vertical-align: middle;"><img src="{{history.icon}}" width="64" height="64"/></td>
+                        <td style="vertical-align: middle;">{{history.name}}</td>
+                        <td style="vertical-align: middle;">{{history.broadcaster}}</td>
+                        <td style="vertical-align: middle;">{{history.region}}</td>
+                        <td style="vertical-align: middle;"><a href="{{history.websiteUrl}}">{{history.websiteUrl}}</a></td>
+                        <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="">Play</button><button class="btn btn-danger" style="display: inline;" ng-click="">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <script src="frameworks/angular/angular.min.js"></script>
         <!-- Bootstrap core JavaScript
@@ -29,5 +45,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="frameworks/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <!--View Controller-->
+        <script src="controllers/HistoryViewController.js"></script>
     </body>    
 </html>
