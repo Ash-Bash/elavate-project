@@ -14,4 +14,22 @@ HistoryView.controller('HistoryViewController', ['$scope', '$http', function($sc
     
     // Refresh WebPage
     refresh();
+    
+    // Plays Radio Station function 
+    $scope.playStation = function (id) {
+        console.log(id);
+        $http.get('/api/historylist/' + id).success(function(response){
+            console.log(response);
+        });
+    }
+    
+    // Deletes a Item From History function 
+    $scope.deleteStation = function (id) {
+        console.log(id);
+        $http.delete('/api/historylist/' + id).success(function(response) {
+            console.log(response);
+            // Refresh WebPage
+            refresh();
+        });
+    }
 }]);

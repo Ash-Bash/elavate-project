@@ -371,7 +371,7 @@ app.post('/api/favoriteslist', function(req, res){
     favorites.websiteUrl = req.body.websiteUrl;
     favorites.streamUrl = req.body.streamUrl;
     
-    history.save(function(err, historyitem){
+    favorites.save(function(err, historyitem){
         res.json(historyitem);
     });
 });

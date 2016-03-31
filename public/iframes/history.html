@@ -33,7 +33,7 @@
                         <td style="vertical-align: middle;">{{history.broadcaster}}</td>
                         <td style="vertical-align: middle;">{{history.region}}</td>
                         <td style="vertical-align: middle;"><a href="{{history.websiteUrl}}">{{history.websiteUrl}}</a></td>
-                        <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="">Play</button><button class="btn btn-danger" style="display: inline;" ng-click="">Delete</button></td>
+                        <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStation(history._id)">Play</button><button class="btn btn-danger" style="display: inline;" ng-click="deleteStation(history._id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

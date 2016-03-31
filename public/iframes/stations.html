@@ -32,8 +32,7 @@
                         <td style="vertical-align: middle;">{{station.name}}</td>
                         <td style="vertical-align: middle;">{{station.broadcaster}}</td>
                         <td style="vertical-align: middle;">{{station.region}}</td>
-                        <td style="vertical-align: middle;"><a href="{{station.websiteUrl}}">{{station.websiteUrl}}</a></td>
-                        <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="">Play</button><button class="btn btn-warning" style="display: inline;" ng-click="">Add To Favorites</button></td>
+                        <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStation(station._id)">Play</button><button class="btn btn-warning" style="display: inline;" ng-click="addtoFavorites(station._id)">Add To Favorites</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -15,4 +15,31 @@ HomeView.controller('HomeViewController', ['$scope', '$http', function($scope, $
     
     // Refresh WebPage
     refresh();
+    
+    // Plays Radio Station function 
+    $scope.playStation = function(id) {
+        console.log(id);
+        $http.get('/api/stationslist/' + id).success(function(response){
+            station = response;
+            console.log(station);
+            $http.post('/api/historylist', station).success(function(resp) {
+                console.log(resp);
+                
+            });
+        });
+    }
+    
+    // Adds to Favorites function 
+    $scope.addtoFavorites = function (id) {
+        console.log(id);
+        $http.get('/api/stationslist/' + id).success(function(response){
+            station = response;
+            console.log(station);
+            $http.post('/api/favoriteslist', station).success(function(resp) {
+                console.log(resp);
+                
+            });
+        });
+    }
+    
 }]);
