@@ -147,7 +147,7 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             console.log(station);
             $http.post('/api/historylist', station).success(function(resp) {
                 console.log(resp);
-                
+                refresh();
             });
             $scope.station = station;
         });
@@ -161,7 +161,7 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             console.log(station);
             $http.post('/api/favoriteslist', station).success(function(resp) {
                 console.log(resp);
-                
+                refresh();
             });
         });
     }
@@ -192,7 +192,7 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             console.log(response);
             $http.post('/api/historylist', response).success(function(resp) {
                 console.log(resp);
-                
+                refresh();
             });
             $scope.station = response;
         });
