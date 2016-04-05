@@ -2,6 +2,14 @@ var HistoryView = angular.module('HistoryView', []);
 HistoryView.controller('HistoryViewController', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from HistoryViewController");
     
+    $scope.station = {
+        name: "No Station Selected",
+        icon: "",
+        websiteUrl: "No Station Selected",
+        streamUrl: ""
+        
+    };
+    
     // HTTP Get Requests
     // Gets HistoryList Database
     var refresh = function() {

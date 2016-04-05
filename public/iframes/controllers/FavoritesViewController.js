@@ -3,6 +3,14 @@ var FavoritesView = angular.module('FavoritesView', []);
 FavoritesView.controller('FavoritesViewController', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from FavoritesViewController");
     
+    $scope.station = {
+        name: "No Station Selected",
+        icon: "",
+        websiteUrl: "No Station Selected",
+        streamUrl: ""
+        
+    };
+    
     // HTTP Get Requests
     // Gets FavoritesList Database
     var refresh = function() {

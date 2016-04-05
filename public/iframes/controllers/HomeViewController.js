@@ -2,6 +2,14 @@ var HomeView = angular.module('HomeView', []);
 HomeView.controller('HomeViewController', ['$scope', '$http', function($scope, $http) {
     console.log("Hello World from HomeViewController");
     
+    $scope.station = {
+        name: "No Station Selected",
+        icon: "",
+        websiteUrl: "No Station Selected",
+        streamUrl: ""
+        
+    };
+    
     // HTTP Get Requests
     // Gets StaffpickList Database
     var refresh = function() {
@@ -26,6 +34,12 @@ HomeView.controller('HomeViewController', ['$scope', '$http', function($scope, $
                 console.log(resp);
                 
             });
+            
+            $scope.station = station;
+            var parentScope = $window.parent.angular.element("#WebAppDivController").scope();
+            parentScope.station = $scope.station;
+            parentScope.$apply(function () { });
+            
         });
     }
     

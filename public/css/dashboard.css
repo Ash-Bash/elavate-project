@@ -146,13 +146,13 @@ span {
     height: 64px;
     border-width: 0px;
     border-top-width: 1px;
-    background-color: #eee;
+    background-color: #181818;
 }
 
-#contentview {
-    display: block;
-    position: fixed;
+.contentview {
+    position: absolute;
     right: 0;
+    margin-left: 5%;
     width: 83.29%;
     height: 88.8%;
     border-width: 0px;
@@ -175,10 +175,12 @@ span {
 #playertitleslist {
     width: 60%;
     height: 64px;
+    padding-top: 15px;
 }
 
 #playertitle {
     display: table-row;
+    margin-top: 10px;
 }
 
 

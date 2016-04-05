@@ -35,7 +35,7 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div class="container-fluid" ng-controller="WebAppController">
+        <div id="WebAppDivController" class="container-fluid" ng-controller="WebAppController">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
@@ -46,10 +46,72 @@
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-offset-2 main">
-                    <iframe id="contentview" ng-src="{{contentview_url}}">
-                    </iframe>
-                    <iframe id="playerview" src="{{playerview_url}}">
-                    </iframe>                    
+                    <div id="homeview" class="contentview">
+                        <table class="table">
+                            <tbody>
+                                <!--Displays The Stations List Data In A Table-->
+                                <tr ng-repeat="pick in staffpicklist">
+                                    <td style="vertical-align: middle;"><img src="{{pick.icon}}" width="96" height="96"/></td>
+                                    <td style="vertical-align: middle;">{{pick.name}}</td>
+                                    <td style="vertical-align: middle;">{{pick.stationname}}</td>
+                                    <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStation(pick.stationid)">Play</button><button class="btn btn-warning" style="display: inline;" ng-click="addtoFavorites(pick.stationid)">Add To Favorites</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="stationview" class="contentview">
+                        <table class="table">
+                            <tbody>
+                                <!--Displays The Stations List Data In A Table-->
+                                <tr ng-repeat="station in stationlist">
+                                    <td style="vertical-align: middle;"><img src="{{station.icon}}" width="64" height="64"/></td>
+                                    <td style="vertical-align: middle;">{{station.name}}</td>
+                                    <td style="vertical-align: middle;">{{station.broadcaster}}</td>
+                                    <td style="vertical-align: middle;">{{station.region}}</td>
+                                    <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStation(station._id)">Play</button><button class="btn btn-warning" style="display: inline;" ng-click="addtoFavorites(station._id)">Add To Favorites</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="historyview" class="contentview">
+                        <table class="table">
+                            <tbody>
+                                <!--Displays The Stations List Data In A Table-->
+                                <tr ng-repeat="history in historylist">
+                                    <td style="vertical-align: middle;"><img src="{{history.icon}}" width="64" height="64"/></td>
+                                    <td style="vertical-align: middle;">{{history.name}}</td>
+                                    <td style="vertical-align: middle;">{{history.broadcaster}}</td>
+                                    <td style="vertical-align: middle;">{{history.region}}</td>
+                                    <td style="vertical-align: middle;"><a href="{{history.websiteUrl}}">{{history.websiteUrl}}</a></td>
+                                    <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStationFromHistory(history._id)">Play</button><button class="btn btn-danger" style="display: inline;" ng-click="deleteStationFromHistory(history._id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="favoriteview" class="contentview">
+                        <table class="table">
+                            <tbody>
+                                <!--Displays The Stations List Data In A Table-->
+                                <tr ng-repeat="favorites in favoriteslist">
+                                    <td style="vertical-align: middle;"><img src="{{favorites.icon}}" width="64" height="64"/></td>
+                                    <td style="vertical-align: middle;">{{favorites.name}}</td>
+                                    <td style="vertical-align: middle;">{{favorites.broadcaster}}</td>
+                                    <td style="vertical-align: middle;">{{favorites.region}}</td>
+                                    <td style="vertical-align: middle;"><a href="{{favorites.websiteUrl}}">{{favorites.websiteUrl}}</a></td>
+                                    <td style="vertical-align: middle;"><button class="btn btn-success" style="display: inline; margin-right: 5px;" ng-click="playStationFromFavorites(favorites._id)">Play</button><button class="btn btn-danger" style="display: inline;" ng-click="deleteStationFromFavorites(favorites._id)">Delete</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="playerview">
+                        <ul class="list-inline" style="height: 60px; margin: 0px;">
+                            <li id="playerlist"><button class="btn btn-default btn-lg" style="margin-left: 5px; width: 62px; height: 62px;" ng-click="play()"><span ng-class="playIconState" aria-hidden="true"></span></button></li>
+                            
+                            <li id="playerlist"><button class="btn btn-default btn-lg" style="margin-left: 5px; width: 62px; height: 62px;" ng-click="addFavorites()"><span ng-class="favoriteIconState" aria-hidden="true"></span></button></li>
+                            <li id="playerlist"><img style="margin-left: 5px; width: 62px; height: 62px;" ng-src="station.icon"/></li>
+                            <li id="playertitleslist" style="vertical-align: middle;"><h5 id="playertitle" style="color: #f9f9f9;">{{station.name}}</h5><a id="playertitle">{{station.websiteUrl}}</a></li>  
+                        </ul>
+                    </div>                  
                 </div>
             </div>
         </div>
