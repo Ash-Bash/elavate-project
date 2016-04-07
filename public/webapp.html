@@ -108,9 +108,10 @@
                             <li id="playerlist"><button class="btn btn-default btn-lg" style="margin-left: 5px; width: 62px; height: 62px;" ng-click="play()"><span ng-class="playIconState" aria-hidden="true"></span></button></li>
                             
                             <li id="playerlist"><button class="btn btn-default btn-lg" style="margin-left: 5px; width: 62px; height: 62px;" ng-click="addFavorites()"><span ng-class="favoriteIconState" aria-hidden="true"></span></button></li>
-                            <li id="playerlist"><img style="margin-left: 5px; width: 62px; height: 62px;" ng-src="station.icon"/></li>
+                            <li id="playerlist"><img style="margin-left: 5px; width: 62px; height: 62px;" ng-src="{{station.icon}}"/></li>
                             <li id="playertitleslist" style="vertical-align: middle;"><h5 id="playertitle" style="color: #f9f9f9;">{{station.name}}</h5><a id="playertitle">{{station.websiteUrl}}</a></li>  
                         </ul>
+                        <audio id="radioplayer"></audio>
                     </div>                  
                 </div>
             </div>

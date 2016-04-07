@@ -56,35 +56,21 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     $scope.playState = false;
     $scope.favoriteState = false;
     //Player State Icons
-    $scope.playIconState = "";
-    $scope.favoriteIconState = "";
+    $scope.playIconState = "glyphicon glyphicon-play";
+    $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
     
     //var childView = document.getElementById("contentview").contentWindow;
     //var childScope = childView.angular.element("#contentViewDiv").scope();
     
     $scope.station = {
         name: "No Station Selected",
-        icon: "",
+        icon: "http://www.sjgov.org/uploadedImages/SJC/Departments/Commission_on_Aging/person-icon.gif",
         websiteUrl: "No Station Selected",
         streamUrl: ""
         
     };
     
-   
-    
-    //Player State Icon Logic
-    if ($scope.playState == true){
-        $scope.playIconState = "glyphicon glyphicon-pause";
-    }
-    else{
-        $scope.playIconState = "glyphicon glyphicon-play";
-    }    
-    if ($scope.favoriteState == true){
-        $scope.favoriteIconState = "glyphicon glyphicon-star";
-    }
-    else{
-        $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
-    }
+    //var radioplayer = new Audio('http://www.listenlive.eu/bbcradio1.m3u');
     
     //Functions
     $scope.getStation = function (stationItem) {
@@ -150,6 +136,9 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
                 refresh();
             });
             $scope.station = station;
+            LoadAndPlay($scope.station.streamUrl);
+            $scope.playState = true;
+            $scope.playIconState = "glyphicon glyphicon-pause";
         });
     }
     
@@ -172,6 +161,9 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
         $http.get('/api/historylist/' + id).success(function(response){
             console.log(response);
             $scope.station = response;
+            LoadAndPlay($scope.station.streamUrl);
+            $scope.playState = true;
+            $scope.playIconState = "glyphicon glyphicon-pause";
         });
     }
     
@@ -195,6 +187,9 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
                 refresh();
             });
             $scope.station = response;
+            LoadAndPlay($scope.station.streamUrl);
+            $scope.playState = true;
+            $scope.playIconState = "glyphicon glyphicon-pause";
         });
     }
     
@@ -212,11 +207,13 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     $scope.play = function () {
          if ($scope.playState == true){
              $scope.playState = false;
-             $scope.playIconState = "glyphicon glyphicon-pause";
+             $scope.playIconState = "glyphicon glyphicon-play";
+             radioplayer.pause();
          }
          else{
              $scope.playState = true;
-             $scope.playIconState = "glyphicon glyphicon-play";
+             $scope.playIconState = "glyphicon glyphicon-pause";
+             play();
          }
     }
     
@@ -232,3 +229,31 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     }
     
 }]);
+
+//RadioPlayer Functions
+//Load And Player
+function LoadAndPlay(url) {
+  var audio = document.querySelector("audio");
+  audio.src = url;
+  audio.load();
+  audio.play();
+}
+
+//Load RadioStation
+function LoadStation(url) {
+  var audio = document.querySelector("audio");
+  audio.src = url;
+  audio.load();
+}
+
+//Play Station
+function play() {
+    var audio = document.querySelector("audio");
+    audio.play();
+}
+
+//Pause Station
+function pause(){
+    var audio = document.querySelector("audio");
+    audio.pause();
+}

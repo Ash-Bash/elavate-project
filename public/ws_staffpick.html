@@ -35,7 +35,7 @@
         <br>
         <br>
         <br>
-        <div class="container" ng-controller="StaffPickController">
+        <div class="container-fluid" ng-controller="StaffPickController">
             <!--TITLE-->
             <h1>Staff Picks List</h1>
             <!--TABLE-->
@@ -66,7 +66,7 @@
                     <!--Displays The Staff Picks List Data In A Table-->
                     <tr ng-repeat="pick in staffpicklist">
                         <td>{{pick.name}}</td>
-                        <td><img src="{{pick.icon}}" width="48" height="48"/></td>
+                        <td><img src="{{pick.icon}}" width="64" height="64"/></td>
                         <td>
                             <table class="table">
                                 <thead>

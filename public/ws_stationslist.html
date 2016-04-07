@@ -35,7 +35,7 @@
         <br>
         <br>
         <br>
-        <div class="container" ng-controller="StationsListController">
+        <div class="container-fluid" ng-controller="StationsListController">
             <!--TITLE-->
             <h1>Stations List</h1>
             <!--TABLE-->
@@ -67,7 +67,7 @@
                     <!--Displays The Stations List Data In A Table-->
                     <tr ng-repeat="station in stationlist">
                         <td>{{station.name}}</td>
-                        <td><img src="{{pick.icon}}" width="48" height="48"/></td>
+                        <td><img src="{{station.icon}}" width="48" height="48"/></td>
                         <td>{{station.broadcaster}}</td>
                         <td>{{station.region}}</td>
                         <td><a href="{{station.websiteUrl}}">{{station.websiteUrl}}</a></td>
