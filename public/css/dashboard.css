@@ -153,9 +153,7 @@ span {
     position: absolute;
     right: 0;
     margin-left: 5%;
-    margin-top: 48px;
     margin-bottom: 64px;
-    padding-bottom: 64px;
     width: 83.29%;
     height: 88.8%;
     border-width: 0px;
@@ -172,6 +170,10 @@ span {
 }
 
 #playerlist {
+    height: 64px;
+}
+
+#playerafpblist {
     height: 64px;
 }
 

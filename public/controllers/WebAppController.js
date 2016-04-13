@@ -52,6 +52,10 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     $scope.historyIsActive = "";
     $scope.favoritesIsActive = "";
     
+    var addtofavoritesPlayerButton = document.getElementById("playerafpblist");
+    
+    addtofavoritesPlayerButton.style.display = "none";
+    
     //Player States
     $scope.playState = false;
     $scope.favoriteState = false;
@@ -75,6 +79,15 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     //Functions
     $scope.getStation = function (stationItem) {
         $scope.station = stationItem;
+    }
+    
+    $scope.setFavoritesButtonState = function(){
+        if ($scope.favoriteState == true){
+             $scope.favoriteIconState = "glyphicon glyphicon-star";
+        }
+        else{
+             $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
+         }
     }
     
     //Sets a Sidebar item as active and sets the iframes content
@@ -139,6 +152,10 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             LoadAndPlay($scope.station.streamUrl);
             $scope.playState = true;
             $scope.playIconState = "glyphicon glyphicon-pause";
+            addtofavoritesPlayerButton.style.display = "";
+            $scope.favoriteState = false;
+            $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
+            $scope.setFavoritesButtonState();
         });
     }
     
@@ -164,6 +181,10 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             LoadAndPlay($scope.station.streamUrl);
             $scope.playState = true;
             $scope.playIconState = "glyphicon glyphicon-pause";
+            addtofavoritesPlayerButton.style.display = "";
+            $scope.favoriteState = false;
+            $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
+            $scope.setFavoritesButtonState();
         });
     }
     
@@ -190,6 +211,7 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
             LoadAndPlay($scope.station.streamUrl);
             $scope.playState = true;
             $scope.playIconState = "glyphicon glyphicon-pause";
+            addtofavoritesPlayerButton.style.display = "none";
         });
     }
     
@@ -219,12 +241,16 @@ WebApp.controller('WebAppController', ['$scope', '$http', function($scope, $http
     
     $scope.addFavorites = function () {
         if ($scope.favoriteState == true){
-             $scope.favoriteState = false;
              $scope.favoriteIconState = "glyphicon glyphicon-star";
-         }
-         else{
+        }
+        else{
              $scope.favoriteState = true;
              $scope.favoriteIconState = "glyphicon glyphicon-star-empty";
+             $http.post('/api/favoriteslist', $scope.station).success(function(resp) {
+                console.log(resp);
+                refresh();
+            });
+            $scope.setFavoritesButtonState();
          }
     }
     
