@@ -42,6 +42,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Icon</th>
                         <th>Station ID</th>
@@ -52,6 +53,7 @@
                 <tbody>
                      <!--Inputs So The User Can add a Record To The Staff Picks List-->
                     <tr>
+                        <td></td>
                         <td><input class="form-control" ng-model="pick.name"></td>
                         <td><input class="form-control" ng-model="pick.icon"></td>
                         <td>
@@ -65,6 +67,7 @@
                     </tr>
                     <!--Displays The Staff Picks List Data In A Table-->
                     <tr ng-repeat="pick in staffpicklist">
+                        <td>{{pick._id}}</td>
                         <td>{{pick.name}}</td>
                         <td><img src="{{pick.icon}}" width="64" height="64"/></td>
                         <td>
